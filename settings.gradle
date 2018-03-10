@@ -1,0 +1,4 @@
+rootProject.name = 'signs-of-life'
+
+include 'sign-service'
+include 'shape-service'

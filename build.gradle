@@ -1,0 +1,23 @@
+buildscript {
+    ext {
+        springBootVersion = '2.0.0.RELEASE'
+        springCloudContractVersion = '1.2.3.RELEASE'
+        springCloudVersion = 'Finchley.M8'
+    }
+    repositories {
+        mavenLocal()
+        mavenCentral()
+        maven {url "https://repo.spring.io/milestone"}
+    }
+    dependencies {
+        classpath("org.springframework.boot:spring-boot-gradle-plugin:${springBootVersion}")
+        classpath("org.springframework.cloud:spring-cloud-contract-dependencies:${springCloudContractVersion}")
+    }
+}
+
+
+
+group 'com.mimacom'
+version '1.0-SNAPSHOT'
+
+apply plugin: 'maven'
