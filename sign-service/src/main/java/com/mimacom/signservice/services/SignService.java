@@ -13,8 +13,8 @@ public class SignService {
         this.shapeClient = shapeClient;
     }
 
-    public Double getTrianglePriceForDimensions(Double price, Double length, Double width) {
-        Shape shape = shapeClient.getTriangle(length, width);
+    public Double getTrianglePriceForDimensions(Double price, Double height, Double width) {
+        Shape shape = shapeClient.getTriangle(height, width);
         return shape.getArea() * price;
     }
 }

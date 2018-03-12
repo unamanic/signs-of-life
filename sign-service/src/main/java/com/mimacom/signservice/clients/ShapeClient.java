@@ -18,11 +18,11 @@ public class ShapeClient {
     }
 
 
-    public Shape getTriangle(Double length, Double width) {
+    public Shape getTriangle(Double height, Double width) {
         return restTemplate.getForEntity(
                 UriComponentsBuilder
                         .fromHttpUrl(this.shapeServiceUrl + "/triangle")
-                        .queryParam("length", length)
+                        .queryParam("height", height)
                         .queryParam("width", width)
                         .build().toString(), Shape.class).getBody();
     };
