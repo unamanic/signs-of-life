@@ -10,8 +10,25 @@ buildscript {
     }
     dependencies {
         classpath("org.springframework.boot:spring-boot-gradle-plugin:${springBootVersion}")
-        classpath("org.springframework.cloud:spring-cloud-contract-dependencies:${springCloudContractVersion}")
+        classpath ("org.springframework.cloud:spring-cloud-contract-gradle-plugin:${springCloudContractVersion}")
     }
+}
+
+
+apply plugin: 'java'
+apply plugin: 'eclipse'
+apply plugin: 'org.springframework.boot'
+apply plugin: 'io.spring.dependency-management'
+apply plugin: 'spring-cloud-contract'
+apply plugin: 'groovy'
+apply plugin: 'maven'
+
+group = 'com.mimacom'
+version = '0.0.1-SNAPSHOT'
+sourceCompatibility = 1.8
+
+contracts {
+    baseClassForTests = 'com.mimacom.shapeservice.BaseClass'
 }
 
 repositories {
@@ -20,26 +37,19 @@ repositories {
     maven {url "https://repo.spring.io/milestone"}
 }
 
-apply plugin: 'java'
-apply plugin: 'eclipse'
-apply plugin: 'org.springframework.boot'
-apply plugin: 'io.spring.dependency-management'
-apply plugin: 'maven'
-
-group = 'com.mimacom'
-version = '0.0.1-SNAPSHOT'
-sourceCompatibility = 1.8
-
 dependencies {
 	compile('org.springframework.boot:spring-boot-starter-actuator')
 	compile('org.springframework.boot:spring-boot-starter-web')
 	compileOnly('org.projectlombok:lombok:1.16.18')
 	testCompile('org.springframework.boot:spring-boot-starter-test')
 	testCompile('org.springframework.restdocs:spring-restdocs-mockmvc')
+    testCompile('org.springframework.cloud:spring-cloud-contract-wiremock')
+    testCompile('org.springframework.cloud:spring-cloud-starter-contract-verifier')
 }
 
 dependencyManagement {
 	imports {
 		mavenBom "org.springframework.cloud:spring-cloud-dependencies:${springCloudVersion}"
-	}
+        mavenBom "org.springframework.cloud:spring-cloud-contract-dependencies:${springCloudContractVersion}"
+    }
 }
